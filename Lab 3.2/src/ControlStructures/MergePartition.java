@@ -25,16 +25,30 @@ public class MergePartition {
 	
 	public static int partition(String[] x)
 	{
-		int P = 0;
+		String P = x[0];
+		int Piv = 0;
 		int L = 1;
 		int R = x.length;
 		while(R > L)
 		{
-			if(x[R].compareTo(x[P])<0)
-			{
-				swap(x, P, R);
+			while()
+			{	
+				if(x[R].compareTo(P)>=0)
+				{
+					R--;
+				}
+			}
+			swap(x, Piv, R);
+			Piv = R;
+
+				if(x[L].compareTo(P)>0)
+				{
+					swap(x, Piv, L);
+					Piv = L;
+				}
 			}
 		}
+		return Piv;
 	}
 	
 	public static void swap(int[] a, int x, int y)
