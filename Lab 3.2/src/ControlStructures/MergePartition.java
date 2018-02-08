@@ -2,6 +2,11 @@ package ControlStructures;
 
 public class MergePartition {
 
+	public static void main(String[] args)
+	{
+		
+	}
+	
 	public static String[] merge(String[] x, String[] y)
 	{
 		String[] combo = new String[x.length + y.length];
@@ -31,22 +36,18 @@ public class MergePartition {
 		int R = x.length;
 		while(R > L)
 		{
-			while()
+			while(x[R].compareTo(P)<=0)
 			{	
-				if(x[R].compareTo(P)>=0)
-				{
-					R--;
-				}
+				R--;
 			}
 			swap(x, Piv, R);
-			Piv = R;
-
-				if(x[L].compareTo(P)>0)
-				{
-					swap(x, Piv, L);
-					Piv = L;
-				}
+			Piv = R - 1;
+			while(x[L].compareTo(P)>=0)
+			{		
+				L++;
 			}
+			swap(x, Piv, L);
+			Piv = L + 1;
 		}
 		return Piv;
 	}
