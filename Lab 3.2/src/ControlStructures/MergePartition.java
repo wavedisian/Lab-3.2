@@ -3,7 +3,51 @@ package ControlStructures;
 public class MergePartition {
 
 	public static void main(String[] args)
-	{
+	{   
+		//merge() tests
+		String[] x = {"a", "d", "g", "j", "m", "p", "s", "v", "y"};
+		String[] y = {"b", "e", "h", "k", "n", "q", "t", "w", "z"};
+		String[] z = {"c", "f", "i", "l", "o", "r", "u", "x"};
+		
+		//partition() tests
+		String[] a = {"e", "d", "c", "b", "a"};
+		String[] b = {"a", "b", "c", "d", "e"};
+		String[] c = {"d", "b", "a", "e", "c"};
+				
+		long in = System.nanoTime();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 	}
 	
@@ -12,7 +56,7 @@ public class MergePartition {
 		String[] combo = new String[x.length + y.length];
 		int xc = 0;
 		int yc = 0;
-		while(xc + yc < (x.length + y.length) - 2)
+		while(xc + yc < (x.length + y.length) )
 		{
 			if(x[xc].compareTo(y[yc])>=0)
 			{
