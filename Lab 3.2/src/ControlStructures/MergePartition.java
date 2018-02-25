@@ -15,38 +15,26 @@ public class MergePartition {
 		String[] c = {"d", "b", "a", "e", "c"};
 				
 		long in = System.nanoTime();
+		merge(x, y);
+		long out = System.nanoTime();
+		long time = out - in;
+		for(String s : merge(x, y))
+		{
+			System.out.print(s + ", ");
+		}
+		System.out.println();
+		System.out.println("Merge took " + time + " nanoseconds");
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		in = System.nanoTime();
+		merge(x, z);
+		out = System.nanoTime();
+		time = out - in;
+		for(String s : merge(x, z))
+		{
+			System.out.print(s + ", ");
+		}
+		System.out.println();
+		System.out.println("Merge took " + time + " nanoseconds");
 		
 		
 	}
@@ -56,14 +44,14 @@ public class MergePartition {
 		String[] combo = new String[x.length + y.length];
 		int xc = 0;
 		int yc = 0;
-		while(xc + yc < (x.length + y.length) )
+		while(xc + yc < (x.length + y.length) - 1)
 		{
 			if(x[xc].compareTo(y[yc])>=0)
 			{
 				combo[xc + yc] = y[yc];
 				yc++;
 			}
-			if(x[xc].compareTo(y[yc])<0)
+			else
 			{
 				combo[xc + yc] = x[xc];
 				xc++;
