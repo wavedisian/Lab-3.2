@@ -36,6 +36,18 @@ public class MergePartition {
 		System.out.println();
 		System.out.println("Merge took " + time + " nanoseconds");
 		
+		in = System.nanoTime();
+		int part = partition(a);
+		out = System.nanoTime();
+		time = out - in;
+		for(String s : a)
+		{
+			System.out.print(s + ", ");
+		}
+		System.out.println();
+		System.out.println("Pivot located at index " + part);
+		System.out.println("Partition took " + time + " nanoseconds");
+		
 		
 	}
 	
@@ -44,7 +56,7 @@ public class MergePartition {
 		String[] combo = new String[x.length + y.length];
 		int xc = 0;
 		int yc = 0;
-		while(xc + yc < (x.length + y.length) - 1)
+		while((xc < x.length)&&(yc < y.length))
 		{
 			if(x[xc].compareTo(y[yc])>=0)
 			{
@@ -65,16 +77,16 @@ public class MergePartition {
 		String P = x[0];
 		int Piv = 0;
 		int L = 1;
-		int R = x.length;
+		int R = x.length-1;
 		while(R > L)
 		{
-			while(x[R].compareTo(P)<=0)
+			while(x[R].compareTo(P)>=0)
 			{	
 				R--;
 			}
 			swap(x, Piv, R);
 			Piv = R - 1;
-			while(x[L].compareTo(P)>=0)
+			while(x[L].compareTo(P)<=0)
 			{		
 				L++;
 			}
