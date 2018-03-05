@@ -56,7 +56,7 @@ public class MergePartition {
 		String[] combo = new String[x.length + y.length];
 		int xc = 0;
 		int yc = 0;
-		while((xc < x.length)&&(yc < y.length))
+		while(xc + yc < (x.length + y.length) - 1)
 		{
 			if(x[xc].compareTo(y[yc])>=0)
 			{
@@ -85,13 +85,13 @@ public class MergePartition {
 				R--;
 			}
 			swap(x, Piv, R);
-			Piv = R - 1;
+			Piv = R;
 			while(x[L].compareTo(P)<=0)
 			{		
 				L++;
 			}
 			swap(x, Piv, L);
-			Piv = L + 1;
+			Piv = L;
 		}
 		return Piv;
 	}
