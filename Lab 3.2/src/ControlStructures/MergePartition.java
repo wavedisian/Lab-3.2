@@ -44,9 +44,9 @@ public class MergePartition {
 		String[] combo = new String[x.length + y.length];
 		int xc = 0;
 		int yc = 0;
-		while(xc + yc < (x.length + y.length) - 1)
+		while((xc<x.length)&&(yc<y.length))
 		{
-			if(x[xc].compareTo(y[yc])>=0)
+			if(x[xc].compareTo(y[yc])>0)
 			{
 				combo[xc + yc] = y[yc];
 				yc++;
@@ -55,6 +55,20 @@ public class MergePartition {
 			{
 				combo[xc + yc] = x[xc];
 				xc++;
+			}
+		}
+		if(xc==x.length-1)
+		{
+			for(int i = 0; i < y.length - yc + 1; i++)
+			{
+				combo[xc+yc+i] = y[yc+i];
+			}
+		}
+		else
+		{
+			for(int i = 0; i < x.length - xc + 1; i++)
+			{
+				combo[xc+yc+i] = x[xc+i];
 			}
 		}
 		return combo;
