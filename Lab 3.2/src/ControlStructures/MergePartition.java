@@ -37,7 +37,7 @@ public class MergePartition {
 		System.out.println("Merge took " + time + " nanoseconds");
 		
 		in = System.nanoTime();
-		int part = partition(a);
+		int part = partition(a, 0, a.length-1);
 		out = System.nanoTime();
 		time = out - in;
 		for(String s : a)
@@ -56,58 +56,58 @@ public class MergePartition {
 		String[] combo = new String[x.length + y.length];
 		int xc = 0;
 		int yc = 0;
-		while((xc<x.length)&&(yc<y.length))
-		{
-			if(x[xc].compareTo(y[yc])>0)
-			{
-				combo[xc + yc] = y[yc];
-				yc++;
-			}
-			else
-			{
-				combo[xc + yc] = x[xc];
-				xc++;
-			}
-		}
-		if(xc==x.length-1)
-		{
-			for(int i = 0; i < y.length - yc + 1; i++)
-			{
-				combo[xc+yc+i] = y[yc+i];
-			}
-		}
-		else
-		{
-			for(int i = 0; i < x.length - xc + 1; i++)
-			{
-				combo[xc+yc+i] = x[xc+i];
-			}
-		}
+	    int  k = 0;
+	    while ((xc < x.length) && (yc < y.length))
+	    {
+	        if (x[xc].compareTo(y[yc])<0)
+	        {
+	            combo[k] = x[xc];
+	            xc++;
+	        }
+	        else
+	        {
+	            combo[k] = y[yc];
+	            yc++;
+	        }
+	        k++;
+	    }
+	    while (xc < x.length)
+	    {
+	        combo[k] = x[xc];
+	        xc++;
+	        k++;
+	    }
+
+	    while (yc < y.length)
+	    {
+	        combo[k] = y[yc];
+	        yc++;
+	        k++;
+	    }
 		return combo;
 	}
 	
-	public static int partition(String[] x)
+	public static int partition(String[] x, int a, int b)
 	{
-		String P = x[0];
-		int Piv = 0;
-		int L = 1;
-		int R = x.length-1;
-		while(R > L)
+		String P = x[a];
+		int R = b;
+		int L = a + 1;
+		boolean Lb;
+		boolean Rb;
+		while(L<R-1)
 		{
-			while(x[R].compareTo(P)>=0)
-			{	
-				R--;
-			}
-			swap(x, Piv, R);
-			Piv = R;
-			while(x[L].compareTo(P)<=0)
-			{		
+			while(x[L].compareTo(P)<0)
+			{
 				L++;
 			}
-			swap(x, Piv, L);
-			Piv = L;
+			while(x[R].compareTo(P)>0)
+			{
+				R--;
+			}
+			swap(x, L, R);
 		}
-		return Piv;
+		swap(x, L, a);
+		return L;
 	}
 	
 	public static void swap(int[] a, int x, int y)
