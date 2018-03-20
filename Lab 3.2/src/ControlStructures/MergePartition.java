@@ -26,10 +26,10 @@ public class MergePartition {
 		System.out.println("Merge took " + time + " nanoseconds");
 		
 		in = System.nanoTime();
-		merge(x, z);
+		String[] m = merge(x, z);
 		out = System.nanoTime();
 		time = out - in;
-		for(String s : merge(x, z))
+		for(String s : m)
 		{
 			System.out.print(s + ", ");
 		}
@@ -92,22 +92,25 @@ public class MergePartition {
 		String P = x[a];
 		int R = b;
 		int L = a + 1;
-		boolean Lb;
-		boolean Rb;
 		while(L<R-1)
-		{
-			while(x[L].compareTo(P)<0)
-			{
+		{	
+			while((L<R)&&(x[L].compareTo(P)<0))
+			{	
 				L++;
 			}
-			while(x[R].compareTo(P)>0)
+			while((R>L)&&(x[R].compareTo(P)>0))
 			{
 				R--;
 			}
 			swap(x, L, R);
 		}
-		swap(x, L, a);
-		return L;
+		if(L==x.length-1)
+		{
+			swap(x, 0, x.length-1);
+			return x.length-1;
+		}
+		swap(x, R-1, a);
+		return R-1;
 	}
 	
 	public static void swap(int[] a, int x, int y)
